@@ -16,9 +16,7 @@
 package com.example.androiddevchallenge.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 
 private val DarkColorPalette = darkColors(
@@ -43,7 +41,7 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun MyTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
+fun PetsTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {
@@ -56,4 +54,46 @@ fun MyTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() (
         shapes = shapes,
         content = content
     )
+}
+
+/**
+ * Alternate to [MaterialTheme] allowing us to add our own theme systems (e.g. [Elevations]) or to
+ * extend [MaterialTheme]'s types e.g. return our own [Colors] extension
+ */
+object PetsTheme {
+
+    /**
+     * Proxy to [MaterialTheme]
+     */
+    val colors: Colors
+        @Composable
+        get() = MaterialTheme.colors
+
+    /**
+     * Proxy to [MaterialTheme]
+     */
+    val typography: Typography
+        @Composable
+        get() = MaterialTheme.typography
+
+    /**
+     * Proxy to [MaterialTheme]
+     */
+    val shapes: Shapes
+        @Composable
+        get() = MaterialTheme.shapes
+
+    /**
+     * Retrieves the current [Elevations] at the call site's position in the hierarchy.
+     */
+    val elevations: Elevations
+        @Composable
+        get() = LocalElevations.current
+
+    /**
+     * Retrieves the current [Images] at the call site's position in the hierarchy.
+     */
+    val images: Images
+        @Composable
+        get() = LocalImages.current
 }

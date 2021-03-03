@@ -14,30 +14,53 @@
  * limitations under the License.
  */
 
-buildscript {
-    ext.kotlin_version = '1.4.30'
-    ext.compose_version = '1.0.0-beta01'
-    ext.coroutines_version = '1.4.2'
+import com.example.androiddevchallenge.buildsrc.Libs
+import com.example.androiddevchallenge.buildsrc.Versions
 
+buildscript {
     repositories {
         google()
         jcenter()
     }
-
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.0-alpha08'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath Libs.androidGradlePlugin
+        classpath Libs.Kotlin.gradlePlugin
     }
 }
 
 plugins {
-    id 'com.diffplug.spotless' version '5.7.0'
+    id 'com.diffplug.spotless' version '5.10.2'
 }
+
 
 subprojects {
     repositories {
         google()
         jcenter()
+
+        if (!Libs.AndroidX.Compose.snapshot.isEmpty()) {
+            maven { url "https://androidx.dev/snapshots/builds/${Libs.AndroidX.Compose.snapshot}/artifacts/repository/" }
+            maven { url "http://androidx.dev/storage/repository/androidx/constraintlayout" }
+        }
+
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            jvmTarget = '1.8'
+            allWarningsAsErrors = false
+            // Opt-in to experimental compose APIs
+            freeCompilerArgs += '-Xopt-in=kotlin.RequiresOptIn'
+        }
+    }
+
+    configurations.configureEach {
+        // androidx.test forces JUnit, 4.12, prefer 4.13
+        resolutionStrategy {
+            force Libs.JUnit.junit
+        }
     }
 
     apply plugin: 'com.diffplug.spotless'
@@ -46,8 +69,7 @@ subprojects {
             target '**/*.kt'
             targetExclude("$buildDir/**/*.kt")
             targetExclude('bin/**/*.kt')
-
-            ktlint("0.40.0")
+            ktlint(Versions.ktlint).userData([android: "true"])
             licenseHeaderFile rootProject.file('spotless/copyright.kt')
         }
     }
