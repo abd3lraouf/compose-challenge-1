@@ -1,4 +1,4 @@
-# PEts
+# Pets by AbdELraouf Sabri
 
 <!--- Replace <OWNER> with your Github Username and <REPOSITORY> with the name of your repository. -->
 <!--- You can find both of these in the url bar when you open your repository in github. -->
@@ -12,7 +12,9 @@ A sample app for pet adoption
 ## :bulb: Motivation and Context
 <!--- Optionally point readers to interesting parts of your submission. -->
 <!--- What are you especially proud of? -->
-- First time
+- First time, trying to get myself familiar 
+
+
 
 ## :camera_flash: Screenshots
 <!-- You can add more screenshots here if you like -->
