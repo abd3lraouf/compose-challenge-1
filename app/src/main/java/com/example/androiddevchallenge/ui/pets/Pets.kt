@@ -1,3 +1,18 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.androiddevchallenge.ui.pets
 
 import androidx.annotation.DrawableRes
@@ -6,11 +21,23 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.*
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.primarySurface
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -32,7 +59,6 @@ import com.example.androiddevchallenge.ui.common.OutlinedAvatar
 import com.example.androiddevchallenge.ui.theme.PetsTheme
 import dev.chrisbanes.accompanist.insets.navigationBarsHeight
 import dev.chrisbanes.accompanist.insets.navigationBarsPadding
-import java.util.*
 
 @Composable
 fun Pets(lovePet: (Long) -> Unit, adoptPet: (Long) -> Unit) {
@@ -46,7 +72,7 @@ fun Pets(lovePet: (Long) -> Unit, adoptPet: (Long) -> Unit) {
                     tabs.forEach { tab ->
                         BottomNavigationItem(
                             icon = { Icon(painterResource(tab.icon), contentDescription = null) },
-                            label = { Text(stringResource(tab.title).toUpperCase(Locale.ROOT)) },
+                            label = { Text(stringResource(tab.title).toUpperCase()) },
                             selected = tab == selectedTab,
                             onClick = { setSelectedTab(tab) },
                             alwaysShowLabel = false,
@@ -106,7 +132,6 @@ fun PetsAppBar(modifier: Modifier = Modifier) {
 
                     )
             )
-
         }
     }
 }
@@ -118,7 +143,6 @@ sealed class PetsTab(
     object Home : PetsTab(R.string.home, R.drawable.ic_home)
     object Favorite : PetsTab(R.string.favorites, R.drawable.ic_favorite)
 }
-
 
 @Composable
 @Preview

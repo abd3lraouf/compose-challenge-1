@@ -1,9 +1,23 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.androiddevchallenge.model
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import com.example.androiddevchallenge.R
 
 @Immutable
@@ -121,14 +135,19 @@ val addresses = listOf(
 
 val descriptions = listOf(
     "Not everything that is faced can be changed, but nothing can be changed until it is faced.",
-    "It doesn't matter how strong your opinion are. If you don't use your power for positive change, you are indeed part of the problem",
+    "It doesn't matter how strong your opinion are. If you don't use your power" +
+        " for positive change, you are indeed part of the problem",
     "All great changes are preceded by choas",
-    "We all get scared and want to turn away, but it isn't always strength that makes you stay. Strength is also making the decision to change your destiny.",
-    "We must be impatient for change. Let us remember that our voice is a precious gift and we must use it",
+    "We all get scared and want to turn away, but it isn't always strength that" +
+        " makes you stay. Strength is also making the decision to change your destiny.",
+    "We must be impatient for change. Let us remember that our voice is a precious" +
+        " gift and we must use it",
     "If you do not change direction, you might end up where you are heading",
     "The moment of change is the only poem",
-    "The only way to make sense out of change is to plunge into it, move with it, and join the dance",
-    "Change will not come if we wait for some other person or some other time. We are the ones we’ve been waiting for. We are the change that we seek",
+    "The only way to make sense out of change is to plunge into it, move with" +
+        " it, and join the dance",
+    "Change will not come if we wait for some other person or some other time." +
+        " We are the ones we’ve been waiting for. We are the change that we seek",
 )
 
 val colors = listOf(
@@ -410,4 +429,4 @@ val allPets = listOf(
         colors.random()
     ),
 
-    ).shuffled()
+).shuffled()

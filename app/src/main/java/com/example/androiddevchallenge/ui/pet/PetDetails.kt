@@ -1,10 +1,37 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.androiddevchallenge.ui.pet
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.outlined.LocationOn
@@ -76,7 +103,10 @@ fun PetDetails(pet: Pet, lovePet: (Long) -> Unit, adoptPet: (Long) -> Unit, upPr
                 }
             }
             ConstraintLayout {
-                val (name, addressIcon, address, like, age, color, weight, petStory, petStoryText, ownerAvatar, ownerPostedBy, ownerName, contactMe) = createRefs()
+                val (
+                    name, addressIcon, address, like, age, color, weight, petStory, petStoryText,
+                    ownerAvatar, ownerPostedBy, ownerName, contactMe
+                ) = createRefs()
                 Text(
                     text = pet.name,
                     style = MaterialTheme.typography.h4,
@@ -115,25 +145,27 @@ fun PetDetails(pet: Pet, lovePet: (Long) -> Unit, adoptPet: (Long) -> Unit, upPr
                             top.linkTo(name.top)
                             bottom.linkTo(addressIcon.bottom)
                             end.linkTo(parent.end, margin = 16.dp)
-
                         }
                 )
 
-                PetDetailsCategoryCard("Age", "${pet.age} months",
+                PetDetailsCategoryCard(
+                    "Age", "${pet.age} months",
                     modifier = Modifier
                         .constrainAs(age) {
                             top.linkTo(addressIcon.bottom, margin = 16.dp)
                             start.linkTo(addressIcon.start)
                         }
                 )
-                PetDetailsCategoryCard("Color", pet.color,
+                PetDetailsCategoryCard(
+                    "Color", pet.color,
                     modifier = Modifier
                         .constrainAs(color) {
                             top.linkTo(addressIcon.bottom, margin = 16.dp)
                             start.linkTo(age.end, margin = 4.dp)
                         }
                 )
-                PetDetailsCategoryCard("Weight", "${pet.weight.toInt()} KG",
+                PetDetailsCategoryCard(
+                    "Weight", "${pet.weight.toInt()} KG",
                     modifier = Modifier
                         .constrainAs(weight) {
                             top.linkTo(addressIcon.bottom, margin = 16.dp)
@@ -196,7 +228,8 @@ fun PetDetails(pet: Pet, lovePet: (Long) -> Unit, adoptPet: (Long) -> Unit, upPr
                         }
                 )
 
-                Button(onClick = { /*TODO*/ },
+                Button(
+                    onClick = { /*TODO*/ },
                     shape = RoundedCornerShape(50),
                     modifier = Modifier
                         .constrainAs(contactMe) {
@@ -206,9 +239,8 @@ fun PetDetails(pet: Pet, lovePet: (Long) -> Unit, adoptPet: (Long) -> Unit, upPr
                         }
                 ) {
                     Icon(Icons.Default.Call, contentDescription = "Contact ${pet.owner.name}")
-                    Text(modifier = Modifier.padding(start = 10.dp),text = "Contact me")
+                    Text(modifier = Modifier.padding(start = 10.dp), text = "Contact me")
                 }
-
             }
         }
     }
@@ -245,6 +277,5 @@ fun PetDetailsCategoryCard(
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
         }
-
     }
 }

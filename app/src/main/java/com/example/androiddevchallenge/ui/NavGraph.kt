@@ -13,14 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.example.androiddevchallenge.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
-import androidx.navigation.compose.*
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.ui.MainDestinations.PET_DETAIL_ID_KEY
 import com.example.androiddevchallenge.ui.pet.PetDetails
 import com.example.androiddevchallenge.ui.pets.Pets
@@ -60,7 +63,6 @@ fun NavGraph(startDestination: String = MainDestinations.PETS_ROUTE) {
         }
     }
 }
-
 
 /**
  * Models the navigation actions in the app.
